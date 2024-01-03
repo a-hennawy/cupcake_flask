@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <form class="search-form" action="/api/cupcakes/search">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search for flavor"
+        id="search-form"
+      />
+      <button>Search</button>
+    </form>
+    <!-- ul to list all available cupcakes in the api GET request -->
+    <ul id="cupcake-list"></ul>
+
+    <!-- form to handle new cupcakes -->
+    <form id="new-cupcake-form">
+      {{form.hidden_tag()}} {%for field in form if field.widget.input_type !=
+      'hidden'%} {{field.label}} {{field}} <br />{%for err in field.errors%}
+      {{err}} {%endfor%} {%endfor%}
+      <button id="submit-btn">Add cupcake</button>
+    </form>
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/cupcakes.js"></script>
+  </body>
+</html>
